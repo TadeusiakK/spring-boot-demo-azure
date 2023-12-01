@@ -11,7 +11,7 @@ public class TaskTest {
         Task task = new Task("Task1", "Details1", "User1");
         task.setName("Task1");
 
-        assertEquals("Task4", task.getName());
+        assertEquals("Task1", task.getName());
     }
 
 
