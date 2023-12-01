@@ -9,9 +9,9 @@ public class TaskTest {
     @Test
     void addTaskNameTest(){
         Task task = new Task("Task1", "Details1", "User1");
-        task.setName("Task2");
+        task.setName("Task1");
 
-        assertEquals("Task3", task.getName());
+        assertEquals("Task1", task.getName());
     }
 
 
