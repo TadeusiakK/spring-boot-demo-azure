@@ -24,6 +24,24 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Set build status
+        if: always()
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const status = process.env.GITHUB_JOB === "build" ? "success" : "failure";
+            github.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: github.sha,
+              state: status,
+              target_url: "URL_DO_TWOJEGO_BUILDA",
+              description: "Build Status",
+              context: "ci/build"
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
